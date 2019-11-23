@@ -239,8 +239,13 @@ func main() {
 	// Flatten Organization hierarchy and write to file
 	orgMap := make(map[string]Organization)
 	flattenTree(head, orgMap)
+	values := []Organization{}
+	for _, value := range orgMap {
+		fmt.Println(value)
+		values = append(values, value)
+	}
 
-	bytes, err = writeMetricsFile(orgMap, *outdir+"/metrics_flat.json")
+	bytes, err = writeMetricsFile(values, *outdir+"/metrics_flat.json")
 	errorCheck(err)
 	fmt.Printf("wrote %d bytes\n", bytes)
 }
